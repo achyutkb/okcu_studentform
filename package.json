@@ -15,10 +15,6 @@
     "lint": "eslint client server; exit 0",
     "migrate:down": "knex migrate:down"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bikranshu/express-react-boilerplate.git"
-  },
   "keywords": [
     "node",
     "es6",

@@ -10,7 +10,7 @@ import Student from '../models/student.model';
  * @returns {*}
  */
 export function findAll(req, res) {
-    Student.new()
+    Student.forge()
         .fetchAll()
         .then(student => res.json({
                 error: false,
@@ -31,7 +31,7 @@ export function findAll(req, res) {
  * @returns {*}
  */
 export function findById(req, res) {
-    student.new({id: req.params.id})
+    student.forge({id: req.params.id})
         .fetch()
         .then(student => {
             if (!student) {
@@ -60,17 +60,17 @@ export function findById(req, res) {
 // User_ID
 
 /**
- * Store new student
+ * Store forge student
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function store(req, res) {
-    const {BID, Advisor_ID, Dean_ID, School_ID, User_ID} = req.body;
+    const {BID, Advisor_ID, Dean_ID, School_ID} = req.body;
    
-    Student.new({
-        BID, Advisor_ID, Dean_ID, School_ID, User_ID
+    Student.forge({
+        BID, Advisor_ID, Dean_ID, School_ID
     }).save()
         .then(student => res.json({
                 success: true,
@@ -91,7 +91,7 @@ export function store(req, res) {
  * @returns {*}
  */
 export function update(req, res) {
-    student.new({id: req.params.id})
+    student.forge({id: req.params.id})
         .fetch({require: true})
         .then(student => student.save({
                 BID: req.body.BID || student.get('BID'), 
@@ -125,7 +125,7 @@ export function update(req, res) {
  * @returns {*}
  */
 export function destroy(req, res) {
-    student.new({id: req.params.id})
+    student.forge({id: req.params.id})
         .fetch({require: true})
         .then(student => student.destroy()
             .then(() => res.json({

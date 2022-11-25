@@ -10,7 +10,7 @@ import User from '../models/user.model';
  * @returns {*}
  */
 export function findAll(req, res) {
-    User.new()
+    User.forge()
         .fetchAll()
         .then(user => res.json({
                 error: false,
@@ -31,7 +31,7 @@ export function findAll(req, res) {
  * @returns {*}
  */
 export function findById(req, res) {
-    User.new({id: req.params.id})
+    User.forge({id: req.params.id})
         .fetch()
         .then(user => {
             if (!user) {
@@ -53,7 +53,7 @@ export function findById(req, res) {
 }
 
 /**
- * Store new user
+ * Store forge user
  *
  * @param {object} req
  * @param {object} res
@@ -63,7 +63,7 @@ export function store(req, res) {
     const {first_name, last_name, email} = req.body;
     const password = bcrypt.hashSync(req.body.password, 10);
 
-    User.new({
+    User.forge({
         first_name, last_name, email, password
     }).save()
         .then(user => res.json({
@@ -85,7 +85,7 @@ export function store(req, res) {
  * @returns {*}
  */
 export function update(req, res) {
-    User.new({id: req.params.id})
+    User.forge({id: req.params.id})
         .fetch({require: true})
         .then(user => user.save({
                 first_name: req.body.first_name || user.get('first_name'),
@@ -117,7 +117,7 @@ export function update(req, res) {
  * @returns {*}
  */
 export function destroy(req, res) {
-    User.new({id: req.params.id})
+    User.forge({id: req.params.id})
         .fetch({require: true})
         .then(user => user.destroy()
             .then(() => res.json({

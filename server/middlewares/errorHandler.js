@@ -13,7 +13,7 @@ export function notFound(req, res, next) {
         .json({
             error: {
                 code: HttpStatus.NOT_FOUND,
-                message: HttpStatus.getStatusText(HttpStatus.NOT_FOUND)
+                message: res + HttpStatus.getStatusText(HttpStatus.NOT_FOUND)
             }
         });
 }
@@ -48,7 +48,7 @@ export function genericErrorHandler(err, req, res, next) {
         .json({
             error: {
                 code: err.code || HttpStatus.INTERNAL_SERVER_ERROR,
-                message: err.message || HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR)
+                message: err + " " + res + " " + err.message || HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR)
             }
         });
 }
