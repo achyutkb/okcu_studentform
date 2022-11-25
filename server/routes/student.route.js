@@ -9,18 +9,18 @@ const router = express.Router();
 
 router.route('/')
 
-    .post((req, res) => {
+    .post(isAuthenticated, (req, res) => {
         studentCtrl.store(req, res);
     })
    
-    .get( (req, res) => {
+    .get(isAuthenticated, (req, res) => {
         studentCtrl.findAll(req, res);
     });
 
 
 router.route('/:id')
 
-    .get( (req, res) => {
+    .get(isAuthenticated, (req, res) => {
         studentCtrl.findById(req, res);
     })
 

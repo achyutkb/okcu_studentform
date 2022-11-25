@@ -1,6 +1,6 @@
 import bookshelf from '../config/bookshelf';
 
-const TABLE_NAME = 'student';
+const TABLE_NAME = 'students';
 
 /**
  * User model.

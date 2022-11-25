@@ -10,13 +10,13 @@ router.route('/')
         userCtrl.store(req, res);
     })
 
-    .get( (req, res) => {
+    .get(isAuthenticated, (req, res) => {
         userCtrl.findAll(req, res);
     });
 
 router.route('/:id')
 
-    .get( (req, res) => {
+    .get(isAuthenticated, (req, res) => {
         userCtrl.findById(req, res);
     })
 

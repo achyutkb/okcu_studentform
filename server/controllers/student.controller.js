@@ -31,7 +31,7 @@ export function findAll(req, res) {
  * @returns {*}
  */
 export function findById(req, res) {
-    student.forge({id: req.params.id})
+    Student.forge({id: req.params.id})
         .fetch()
         .then(student => {
             if (!student) {
@@ -67,10 +67,10 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {BID, Advisor_ID, Dean_ID, School_ID} = req.body;
+    const {BID, Advisor_ID, Dean_ID, School_ID,User_ID} = req.body;
    
     Student.forge({
-        BID, Advisor_ID, Dean_ID, School_ID
+        BID, Advisor_ID, Dean_ID, School_ID,User_ID
     }).save()
         .then(student => res.json({
                 success: true,
@@ -91,7 +91,7 @@ export function store(req, res) {
  * @returns {*}
  */
 export function update(req, res) {
-    student.forge({id: req.params.id})
+    Student.forge({id: req.params.id})
         .fetch({require: true})
         .then(student => student.save({
                 BID: req.body.BID || student.get('BID'), 
@@ -125,7 +125,7 @@ export function update(req, res) {
  * @returns {*}
  */
 export function destroy(req, res) {
-    student.forge({id: req.params.id})
+    Student.forge({id: req.params.id})
         .fetch({require: true})
         .then(student => student.destroy()
             .then(() => res.json({
