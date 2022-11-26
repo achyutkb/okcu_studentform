@@ -51,13 +51,11 @@ const styles = (theme) => ({
   },
   avatar: {
     margin: 10,
-    textAlign:'center',
     fontWeight:'bold'
   },
   bigAvatar: {
     width: 60,
     height: 60,
-    justifyContent: 'env',
   },
 });
 

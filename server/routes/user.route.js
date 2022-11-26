@@ -1,6 +1,7 @@
 import express from 'express';
 import * as userCtrl from '../controllers/user.controller';
 import isAuthenticated from '../middlewares/authenticate';
+import isSuperAdmin from '../middlewares/superAdminAuthenticate';
 import validate from '../config/joi.validate';
 import schema from '../utils/validator';
 
@@ -27,6 +28,11 @@ router.route('/:id')
     .delete(isAuthenticated, (req, res) => {
         userCtrl.destroy(req, res);
     });
+
+router.route('/approveUser')
+    .post(isSuperAdmin, (req, res) => {
+        userCtrl.approveUser(req, res);
+    })
 
 
 export default router;

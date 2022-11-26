@@ -116,6 +116,34 @@ export function update(req, res) {
         );
 }
 
+export function approveUser(req, res) {
+    // check if user is super admin
+
+    //if super admin
+        User.forge({id: req.body.id})
+            .fetch({require: true})
+            .then(user => user.save({
+                    status: req.body.status || user.get('status'),
+                    updated_at: req.body.updated_at || user.get('updated_at')
+
+                })
+                    .then(() => res.json({
+                            error: false,
+                            data: user.toJSON()
+                        })
+                    )
+                    .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                            error: true,
+                            data: {message: err.message}
+                        })
+                    )
+            )
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    error: err
+                })
+            );
+}
+
 /**
  * Destroy user by id
  *
