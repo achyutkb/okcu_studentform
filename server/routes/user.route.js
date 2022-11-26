@@ -34,5 +34,4 @@ router.route('/approveUser')
         userCtrl.approveUser(req, res);
     })
 
-
 export default router;

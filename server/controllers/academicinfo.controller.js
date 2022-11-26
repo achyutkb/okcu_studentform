@@ -94,6 +94,7 @@ export function update(req, res) {
                 advisor: req.body.advisor || user.get('advisor'),
                 dean: req.body.dean || user.get('dean'),
                 school_falg: req.body.school_falg || user.get('school_falg'),
+                is_approved: req.body.is_approved || user.get('is_approved'),
             })
                 .then(() => res.json({
                         error: false,
@@ -111,6 +112,38 @@ export function update(req, res) {
             })
         );
 }
+
+
+
+
+export function studentApproval(req, res) {
+    // check if user is super admin
+
+    //if super admin
+        User.forge({id: req.body.id})
+            .fetch({require: true})
+            .then(user => user.save({
+                    is_approved: req.body.is_approved || user.get('is_approved'),
+                    updated_at: req.body.updated_at || user.get('updated_at')
+
+                })
+                    .then(() => res.json({
+                            error: false,
+                            data: user.toJSON()
+                        })
+                    )
+                    .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                            error: true,
+                            data: {message: err.message}
+                        })
+                    )
+            )
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    error: err
+                })
+            );
+}
+
 
 /**
  * Destroy user by id

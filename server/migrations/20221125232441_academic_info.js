@@ -8,6 +8,7 @@ exports.up = function(knex) {
         table.string('minor').notNullable();
         table.string('advisor').notNullable();
         table.string('dean').notNullable();
+        table.bool('is_approved').default(false);
         table.string('school_falg').notNullable();//old/new
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.fn.now());
