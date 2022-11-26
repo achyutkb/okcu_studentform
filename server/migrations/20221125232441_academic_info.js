@@ -8,7 +8,8 @@ exports.up = function(knex) {
         table.string('minor').notNullable();
         table.string('advisor').notNullable();
         table.string('dean').notNullable();
-        table.bool('is_approved').default(false);
+        table.bool('is_advisor_approved').default(false);
+        table.bool('is_dean_approved').default(false);
         table.string('old_new_flag').notNullable();//old/new
         table.integer("user_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
         table.timestamp('created_at').defaultTo(knex.fn.now());

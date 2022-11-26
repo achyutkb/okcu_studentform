@@ -119,7 +119,7 @@ export function advisorApproval(req, res) {
     AcademicInfo.forge({'advisor': req.body.advisor_id,'user_id': req.body.student_id})
             .fetch({require: true})
             .then(academicInfo => academicInfo.save({
-                    is_approved: req.body.is_approved || academicInfo.get('is_approved'),
+                    is_approved: req.body.is_advisor_approved || academicInfo.get('is_advisor_approved'),
                     updated_at: req.body.updated_at || academicInfo.get('updated_at')
 
                 })
@@ -144,7 +144,7 @@ export function deanApproval(req, res) {
     AcademicInfo.forge({'dean': req.body.dean_id,'user_id': req.body.student_id})
             .fetch({require: true})
             .then(academicInfo => academicInfo.save({
-                    is_approved: req.body.is_approved || academicInfo.get('is_approved'),
+                    is_approved: req.body.is_dean_approved || academicInfo.get('is_dean_approved'),
                     updated_at: req.body.updated_at || academicInfo.get('updated_at')
 
                 })
