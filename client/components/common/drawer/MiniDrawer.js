@@ -13,6 +13,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
+import {getLocalStorage} from '../../../utils/storageUtil';
+import { FULL_NAME, LOGIN_EMAIL } from '../../../config/config';
 
 const drawerWidth = 250;
 
@@ -77,10 +79,10 @@ const MiniDrawer = (props) => {
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
         <Typography component="p" className={classes.avatar}>
-          John Doe
+          {getLocalStorage(FULL_NAME)}
         </Typography>
         <Typography component="span" className={classes.avatar}>
-          john.doe@example.com
+          {getLocalStorage(LOGIN_EMAIL)}
         </Typography>
       </div>
       <div className="box" style={{ background: '#eee', padding: '8px 16px' }}>

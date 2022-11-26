@@ -33,6 +33,17 @@ const styles = {
   btn: {
     marginTop: 21,
   },
+  ddl:{
+    minWidth: 320,
+    maxWidth: 400,
+    padding: 5,
+    overflow: 'auto',
+    height: 'auto',
+    margin: 'auto',
+    fontSize: 15,
+    fontFamily: "Roboto",
+    fontWeight: 400,
+  }
 };
 
 const SignUpForm = (props) => {
@@ -51,6 +62,17 @@ const SignUpForm = (props) => {
             <Field type="text" name="email" component={renderText} label="Email" />
             <br />
             <Field type="password" name="password" component={renderText} label="Password" />
+            <br />  <br />
+            <style>
+              
+            </style>
+            <label class={classes.ddl} for="cars">User Type </label>
+
+            <select name="user_type" id="user_type" class={classes.ddl}>
+              <option value="student">Student</option>
+              <option value="advisor">Advisor</option>
+              <option value="dean">Dean</option>
+            </select>
             <br />
             <div className={classes.btnDiv}>
               <Button className={classes.btn} type="submit" variant="contained" color="primary">
