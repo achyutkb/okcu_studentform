@@ -9,8 +9,6 @@ exports.up = function(knex) {
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.fn.now());
         table.integer("user_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
-        table.integer("new_school_info_id").notNullable().unsigned().references("id").inTable("academic_info").onDelete("CASCADE");
-        table.integer("old_school_info_id").notNullable().unsigned().references("id").inTable("academic_info").onDelete("CASCADE");
         table.datetime('date', { precision: 6 }).defaultTo(knex.fn.now(6));
 
    });

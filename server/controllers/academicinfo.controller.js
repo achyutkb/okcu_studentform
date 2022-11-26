@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import HttpStatus from 'http-status-codes';
 import AcademicInfo from '../models/academicinfo.model';
+import Student from '../models/student.model';
 
 /**
  * Find all the users
@@ -60,10 +61,10 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {school_name, degree, major, minor, advisor, dean, school_falg} = req.body;
+    const {school_name, degree, major, minor, advisor, dean, old_new_flag,user_id} = req.body;
     
     AcademicInfo.forge({
-        school_name, degree, major, minor, advisor, dean, school_falg
+        school_name, degree, major, minor, advisor, dean, old_new_flag,user_id
     }).save()
         .then(user => res.json({
                 success: true,
@@ -93,7 +94,7 @@ export function update(req, res) {
                 minor: req.body.minor || user.get('minor'),
                 advisor: req.body.advisor || user.get('advisor'),
                 dean: req.body.dean || user.get('dean'),
-                school_falg: req.body.school_falg || user.get('school_falg'),
+                old_new_flag: req.body.old_new_flag || user.get('old_new_flag'),
                 is_approved: req.body.is_approved || user.get('is_approved'),
             })
                 .then(() => res.json({
@@ -114,22 +115,17 @@ export function update(req, res) {
 }
 
 
-
-
-export function studentApproval(req, res) {
-    // check if user is super admin
-
-    //if super admin
-        User.forge({id: req.body.id})
+export function advisorApproval(req, res) {
+    AcademicInfo.forge({'advisor': req.body.advisor_id,'user_id': req.body.student_id})
             .fetch({require: true})
-            .then(user => user.save({
-                    is_approved: req.body.is_approved || user.get('is_approved'),
-                    updated_at: req.body.updated_at || user.get('updated_at')
+            .then(academicInfo => academicInfo.save({
+                    is_approved: req.body.is_approved || academicInfo.get('is_approved'),
+                    updated_at: req.body.updated_at || academicInfo.get('updated_at')
 
                 })
                     .then(() => res.json({
                             error: false,
-                            data: user.toJSON()
+                            data: academicInfo.toJSON()
                         })
                     )
                     .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -138,10 +134,35 @@ export function studentApproval(req, res) {
                         })
                     )
             )
-            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+    .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                     error: err
                 })
-            );
+    );
+}
+
+export function deanApproval(req, res) {
+    AcademicInfo.forge({'dean': req.body.dean_id,'user_id': req.body.student_id})
+            .fetch({require: true})
+            .then(academicInfo => academicInfo.save({
+                    is_approved: req.body.is_approved || academicInfo.get('is_approved'),
+                    updated_at: req.body.updated_at || academicInfo.get('updated_at')
+
+                })
+                    .then(() => res.json({
+                            error: false,
+                            data: academicInfo.toJSON()
+                        })
+                    )
+                    .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                            error: true,
+                            data: {message: err.message}
+                        })
+                    )
+            )
+    .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    error: err
+                })
+    );
 }
 
 

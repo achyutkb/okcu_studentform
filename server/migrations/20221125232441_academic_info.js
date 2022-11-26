@@ -9,7 +9,8 @@ exports.up = function(knex) {
         table.string('advisor').notNullable();
         table.string('dean').notNullable();
         table.bool('is_approved').default(false);
-        table.string('school_falg').notNullable();//old/new
+        table.string('old_new_flag').notNullable();//old/new
+        table.integer("user_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.fn.now());
     });

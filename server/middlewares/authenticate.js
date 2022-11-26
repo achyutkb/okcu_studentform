@@ -24,11 +24,7 @@ export default (req, res, next) => {
             if (err) {
                 res.status(HttpStatus.UNAUTHORIZED).json({error: 'You are not authorized to perform this operation!'});
             } else {
-                User.query({
-                    where: {id: decoded.id},
-                    where: {status: 1},
-                    select: ['email', 'id']
-                }).fetch().then(user => {
+                User.forge({id: decoded.id}).fetch().then(user => {
                     if (!user) {
                         res.status(HttpStatus.NOT_FOUND).json({error: 'No such user'});
                     } else {
@@ -36,7 +32,9 @@ export default (req, res, next) => {
                         next();
                     }
 
-                });
+                }).catch(err => res.status(HttpStatus.NOT_FOUND).json({
+                    error: 'Not Authorized'
+                }));;
             }
         });
     } else {

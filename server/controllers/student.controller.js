@@ -61,10 +61,10 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {BID, catalogYear, addOnly, new_school_info_id,old_school_info_id,user_id,date} = req.body;
+    const {BID, catalogYear, addOnly,user_id,date} = req.body;
    
     Student.forge({
-        BID, catalogYear, addOnly, new_school_info_id,old_school_info_id,user_id,date
+        BID, catalogYear, addOnly,user_id,date
     }).save()
         .then(student => res.json({
                 success: true,
@@ -91,9 +91,6 @@ export function update(req, res) {
                 BID: req.body.BID || student.get('BID'), 
                 catalogYear: req.body.catalogYear || student.get('catalogYear'),
                 addOnly: req.body.addOnly || student.get('addOnly'), 
-                new_school_info_id: req.body.new_school_info_id || student.get('new_school_info_id'), 
-                old_school_info_id: req.body.old_school_info_id || student.get('old_school_info_id'), 
-                user_id: req.body.user_id || student.get('user_id'),
                 date: req.body.date || student.get('date')
 
             }) 

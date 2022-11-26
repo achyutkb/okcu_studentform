@@ -38,12 +38,12 @@ router.route('/:id')
 
 router.route('/advisorApproval')
     .post(isAdvisor, (req, res) => {
-        academicInfo.studentApproval(req, res);
+        academicInfo.advisorApproval(req, res);
     });
 
 router.route('/deanApproval')
     .post(isDean, (req, res) => {
-        academicInfo.studentApproval(req, res);
+        academicInfo.deanApproval(req, res);
     });
 
 export default router;

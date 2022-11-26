@@ -45,5 +45,7 @@ export function login(req, res) {
                 success: false, message: 'Invalid username or password.'
             });
         }
-    });
+    }) .catch(err => res.status(HttpStatus.UNAUTHORIZED).json({
+        error: 'Invalid username or password.'
+    }));
 }
