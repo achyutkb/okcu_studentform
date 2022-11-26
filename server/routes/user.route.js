@@ -6,7 +6,7 @@ import schema from '../utils/validator';
 
 const router = express.Router();
 router.route('/')
-    .post(validate(schema.storeUser), (req, res) => {
+    .post((req, res) => {
         userCtrl.store(req, res);
     })
 

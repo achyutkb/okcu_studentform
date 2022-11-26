@@ -60,8 +60,9 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {first_name, last_name, email,user_type,signature,status,created_at,updated_at} = req.body;
+    const {first_name, last_name, email,user_type,status,created_at,updated_at} = req.body;
     const password = bcrypt.hashSync(req.body.password, 10);
+    const signature = req.body.first_name + " " + req.body.last_name 
 
     User.forge({
         first_name, last_name, email, password,user_type,signature,status,created_at,updated_at

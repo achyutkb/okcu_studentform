@@ -51,10 +51,13 @@ const styles = (theme) => ({
   },
   avatar: {
     margin: 10,
+    textAlign:'center',
+    fontWeight:'bold'
   },
   bigAvatar: {
     width: 60,
     height: 60,
+    justifyContent: 'env',
   },
 });
 
@@ -62,6 +65,8 @@ const MiniDrawer = (props) => {
   let { navDrawerOpen, classes } = props;
 
   return (
+
+    
     <Drawer
       variant="permanent"
       classes={{
@@ -74,6 +79,7 @@ const MiniDrawer = (props) => {
 
       <div className={classes.root}>
         <Avatar
+          component="p"
           alt="User"
           src="/img/avatar5.png"
           className={classNames(classes.avatar, classes.bigAvatar)}
@@ -81,7 +87,7 @@ const MiniDrawer = (props) => {
         <Typography component="p" className={classes.avatar}>
           {getLocalStorage(FULL_NAME)}
         </Typography>
-        <Typography component="span" className={classes.avatar}>
+        <Typography component="p" className={classes.avatar}>
           {getLocalStorage(LOGIN_EMAIL)}
         </Typography>
       </div>
