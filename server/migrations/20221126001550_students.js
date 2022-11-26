@@ -4,13 +4,16 @@ exports.up = function(knex) {
     return knex.schema.createTable('students', table => {
         table.increments('id').primary().unsigned();
         table.string('BID').notNullable(); //student BID
-        table.string('Advisor_ID').notNullable(); // advisor_id
-        table.string('Dean_ID').notNullable(); //dean_id 
-        table.string('School_ID').notNullable(); //school_id 
+        table.datetime('catalogYear', { precision: 6 }).defaultTo(knex.fn.now(6))
+        table.bool('addOnly').default(false); //checkbox //////////////
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('updated_at').defaultTo(knex.fn.now());
         table.integer("user_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
-    });
+        table.integer("new_school_info_id").notNullable().unsigned().references("id").inTable("academic_info").onDelete("CASCADE");
+        table.integer("old_school_info_id").notNullable().unsigned().references("id").inTable("academic_info").onDelete("CASCADE");
+        table.datetime('date', { precision: 6 }).defaultTo(knex.fn.now(6));
+
+   });
 
 };
 

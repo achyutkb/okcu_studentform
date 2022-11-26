@@ -1,20 +1,20 @@
 import bcrypt from 'bcrypt';
 import HttpStatus from 'http-status-codes';
-import Student from '../models/student.model';
+import AcademicInfo from '../models/academicinfo.model';
 
 /**
- * Find all the students
+ * Find all the users
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function findAll(req, res) {
-    Student.forge()
+    AcademicInfo.forge()
         .fetchAll()
-        .then(student => res.json({
+        .then(user => res.json({
                 error: false,
-                data: student.toJSON()
+                data: user.toJSON()
             })
         )
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -24,17 +24,17 @@ export function findAll(req, res) {
 }
 
 /**
- *  Find student by id
+ *  Find user by id
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function findById(req, res) {
-    Student.forge({id: req.params.id})
+    AcademicInfo.forge({id: req.params.id})
         .fetch()
-        .then(student => {
-            if (!student) {
+        .then(user => {
+            if (!user) {
                 res.status(HttpStatus.NOT_FOUND).json({
                     error: true, data: {}
                 });
@@ -42,7 +42,7 @@ export function findById(req, res) {
             else {
                 res.json({
                     error: false,
-                    data: student.toJSON()
+                    data: user.toJSON()
                 });
             }
         })
@@ -52,23 +52,22 @@ export function findById(req, res) {
         );
 }
 
-
 /**
- * Store forge student
+ * Store forge user
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function store(req, res) {
-    const {BID, catalogYear, addOnly, new_school_info_id,old_school_info_id,user_id,date} = req.body;
-   
-    Student.forge({
-        BID, catalogYear, addOnly, new_school_info_id,old_school_info_id,user_id,date
+    const {school_name, degree, major, minor, advisor, dean, school_falg} = req.body;
+    
+    AcademicInfo.forge({
+        school_name, degree, major, minor, advisor, dean, school_falg
     }).save()
-        .then(student => res.json({
+        .then(user => res.json({
                 success: true,
-                data: student.toJSON()
+                data: user.toJSON()
             })
         )
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -78,28 +77,27 @@ export function store(req, res) {
 }
 
 /**
- * Update student by id
+ * Update user by id
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function update(req, res) {
-    Student.forge({id: req.params.id})
+    AcademicInfo.forge({id: req.params.id})
         .fetch({require: true})
-        .then(student => student.save({
-                BID: req.body.BID || student.get('BID'), 
-                catalogYear: req.body.catalogYear || student.get('catalogYear'),
-                addOnly: req.body.addOnly || student.get('addOnly'), 
-                new_school_info_id: req.body.new_school_info_id || student.get('new_school_info_id'), 
-                old_school_info_id: req.body.old_school_info_id || student.get('old_school_info_id'), 
-                user_id: req.body.user_id || student.get('user_id'),
-                date: req.body.date || student.get('date')
-
-            }) 
+        .then(user => user.save({
+                school_name: req.body.school_name || user.get('school_name'),
+                degree: req.body.degree || user.get('degree'),
+                major: req.body.major || user.get('major'),
+                minor: req.body.minor || user.get('minor'),
+                advisor: req.body.advisor || user.get('advisor'),
+                dean: req.body.dean || user.get('dean'),
+                school_falg: req.body.school_falg || user.get('school_falg'),
+            })
                 .then(() => res.json({
                         error: false,
-                        data: student.toJSON()
+                        data: user.toJSON()
                     })
                 )
                 .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -115,19 +113,19 @@ export function update(req, res) {
 }
 
 /**
- * Destroy student by id
+ * Destroy user by id
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
 export function destroy(req, res) {
-    Student.forge({id: req.params.id})
+    AcademicInfo.forge({id: req.params.id})
         .fetch({require: true})
-        .then(student => student.destroy()
+        .then(user => user.destroy()
             .then(() => res.json({
                     error: false,
-                    data: {message: 'student deleted successfully.'}
+                    data: {message: 'Academic Info deleted successfully.'}
                 })
             )
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({

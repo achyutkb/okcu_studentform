@@ -60,11 +60,11 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {first_name, last_name, email} = req.body;
+    const {first_name, last_name, email,user_type,signature,status,created_at,updated_at} = req.body;
     const password = bcrypt.hashSync(req.body.password, 10);
 
     User.forge({
-        first_name, last_name, email, password
+        first_name, last_name, email, password,user_type,signature,status,created_at,updated_at
     }).save()
         .then(user => res.json({
                 success: true,
@@ -90,7 +90,13 @@ export function update(req, res) {
         .then(user => user.save({
                 first_name: req.body.first_name || user.get('first_name'),
                 last_name: req.body.last_name || user.get('last_name'),
-                email: req.body.email || user.get('email')
+                email: req.body.email || user.get('email'),
+                user_type: req.body.user_type || user.get('user_type'),
+                signature: req.body.signature || user.get('signature'),
+                status: req.body.status || user.get('status'),
+                created_at: req.body.created_at || user.get('created_at'),
+                updated_at: req.body.updated_at || user.get('updated_at')
+
             })
                 .then(() => res.json({
                         error: false,
