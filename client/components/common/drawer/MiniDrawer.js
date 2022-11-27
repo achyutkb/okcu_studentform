@@ -12,9 +12,11 @@ import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
+//import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
+import HistoryEduIcon from '@material-ui/icons/CastForEducation';
 import {getLocalStorage} from '../../../utils/storageUtil';
 import { FULL_NAME, LOGIN_EMAIL } from '../../../config/config';
+import academicDetails from './AcademicDetailsForm.js';
 
 const drawerWidth = 250;
 
@@ -108,9 +110,9 @@ const MiniDrawer = (props) => {
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <LocalTaxiIcon />
+            <HistoryEduIcon />
           </ListItemIcon>
-          <ListItemText primary="Products" />
+          <ListItemText primary="Academic Details" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>

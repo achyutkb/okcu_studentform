@@ -46,13 +46,13 @@ const styles = {
   }
 };
 
-const SignUpForm = (props) => {
+const academicDetails = (props) => {
   const { handleSubmit, onSubmit, classes } = props;
 
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
-        <CardHeader className={classes.cardHeader} title="Sign Up" />
+        <CardHeader className={classes.cardHeader} title="Academic Details Form" />
         <CardContent>
           <form method="post" onSubmit={handleSubmit(onSubmit)}>
             <Field type="text" name="first_name" component={renderText} label="First Name" />
@@ -61,25 +61,35 @@ const SignUpForm = (props) => {
             <br />
             <Field type="text" name="email" component={renderText} label="Email" />
             <br />
-            <Field type="password" name="password" component={renderText} label="Password" />
-            <br />  <br />
-
-            <label class={classes.ddl}>User Type </label>
-
-            <Field name="user_type" id="user_type" class={classes.ddl} component="select">
-              <option value="student">Student</option>
-              <option value="advisor">Advisor</option>
-              <option value="dean">Dean</option>
-            </Field>
+            <Field type="text" name="BID" component={renderText} label="BID" />
+            <br />
+            <Field type="date" name="catalogYear" component={renderText} label="Catalog Year" />
+            <br />
+            <Field type="int" name="addOnly" component={renderText} label="Add Only" /> {/* need to add checkbox here*/}
+            <br />
+            <Field type="text" name="school_name" component={renderText} label="School Name" />
+            <br />
+            <Field type="text" name="major" component={renderText} label="Major" />
+            <br />
+            <Field type="text" name="minor" component={renderText} label="Minor" />
+            <br />
+            <Field type="text" name="advisor" component={renderText} label="Advisor Name" />
+            <br />  
+            <Field type="text" name="dean" component={renderText} label="Dean Name" />
+            <br /> 
+            <Field type="text" name="signature" component={renderText} label="Student Signature" />
+            <br />  
+            <Field type="date" name="date" component={renderText} label="Date" />
+            <br /> 
+                  
+            
+            <br />
 
             <br />
             <div className={classes.btnDiv}>
               <Button className={classes.btn} type="submit" variant="contained" color="primary">
-                Create New Account
+                Add Academic Details
               </Button>
-              <p>
-                Already have an account? <Link to={'/'}>Login</Link>.
-              </p>
             </div>
           </form>
         </CardContent>
@@ -88,10 +98,10 @@ const SignUpForm = (props) => {
   );
 };
 
-const validateSignUp = (values) => {
+const validateAcademicDetails = (values) => {
   const errors = {};
 
-  const requiredFields = ['first_name', 'last_name', 'email', 'password','user_type'];
+  const requiredFields = ['first_name', 'last_name','email','BID', 'catalogYear', 'addOnly', 'school_name','major', 'minor','advisor','dean','signature'];
   requiredFields.forEach((field) => {
     if (!values[field]) {
       errors[field] = '(The ' + field + ' field is required.)';
@@ -104,12 +114,12 @@ const validateSignUp = (values) => {
   return errors;
 };
 
-SignUpForm.propTypes = {
+academicDetails.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
 export default reduxForm({
-  form: 'SignUpForm', // a unique identifier for this form
-  validate: validateSignUp, // ←Callback function for client-side validation
-})(withStyles(styles)(SignUpForm));
+  form: 'academicDetails', // a unique identifier for this form
+  validate: validateAcademicDetails, // ←Callback function for client-side validation
+})(withStyles(styles)(academicDetails));
