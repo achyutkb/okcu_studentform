@@ -16,7 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import HistoryEduIcon from '@material-ui/icons/CastForEducation';
 import {getLocalStorage} from '../../../utils/storageUtil';
 import { FULL_NAME, LOGIN_EMAIL } from '../../../config/config';
-import academicDetails from './AcademicDetailsForm.js';
+import academicDetails from '../../dashboard/AcademicDetailsForm';
 
 const drawerWidth = 250;
 

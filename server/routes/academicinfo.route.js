@@ -3,8 +3,6 @@ import * as academicInfo from '../controllers/academicinfo.controller';
 import isAuthenticated from '../middlewares/authenticate';
 import isDean from '../middlewares/isDean';
 import isAdvisor from '../middlewares/isAdvisor';
-import validate from '../config/joi.validate';
-import schema from '../utils/validator';
 
 const router = express.Router();
 
