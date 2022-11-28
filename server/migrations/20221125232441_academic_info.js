@@ -6,8 +6,8 @@ exports.up = function(knex) {
         table.string('degree').notNullable();
         table.string('major').notNullable();
         table.string('minor').notNullable();
-        table.string('advisor').notNullable();
-        table.string('dean').notNullable();
+        table.integer("advisor_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
+        table.integer("dean_id").notNullable().unsigned().references("id").inTable("users").onDelete("CASCADE");
         table.bool('is_advisor_approved').default(false);
         table.bool('is_dean_approved').default(false);
         table.string('old_new_flag').notNullable();//old/new
