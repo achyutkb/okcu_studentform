@@ -16,7 +16,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import HistoryEduIcon from '@material-ui/icons/CastForEducation';
 import {getLocalStorage} from '../../../utils/storageUtil';
 import { FULL_NAME, LOGIN_EMAIL } from '../../../config/config';
-import academicDetails from '../../dashboard/AcademicDetailsForm';
+import {Link} from "react-router-dom";
+
 
 const drawerWidth = 250;
 
@@ -100,7 +101,7 @@ const MiniDrawer = (props) => {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <a href="/dashboard"><ListItemText primary="Dashbaord"  /></a>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -112,7 +113,7 @@ const MiniDrawer = (props) => {
           <ListItemIcon>
             <HistoryEduIcon />
           </ListItemIcon>
-          <ListItemText primary="Academic Details" />
+          <a href="/academicDetails"><ListItemText primary="Academic Detail"  /></a>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -127,7 +128,7 @@ const MiniDrawer = (props) => {
           <ListItemText primary="Settings" />
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button component="a" href="academicDetails">
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>

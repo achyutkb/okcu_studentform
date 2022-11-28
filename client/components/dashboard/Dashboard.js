@@ -6,6 +6,7 @@ import { AddShoppingCart, ThumbUp, Assessment, Face } from '@material-ui/icons';
 import SummaryBox from './SummaryBox';
 import Product from './Product';
 
+
 const products = [
   { id: 1, title: 'Samsung TV', text: 'Samsung 32 1080p 60Hz LED Smart HDTV.' },
   { id: 2, title: 'Playstation 4', text: 'PlayStation 3 500 GB System' },
