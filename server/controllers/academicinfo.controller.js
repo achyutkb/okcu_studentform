@@ -61,10 +61,26 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {school_name, degree, major, minor, advisor_id, dean_id, old_new_flag} = req.body;
+    const {BID, catalogYear, addOnly} = req.body;
+    const {school_name, degree, major, minor, advisor_id, dean_id} = req.body;
+    const old_new_flag = "new"
     const student_id = req.currentUser.id;
+
+    Student.forge({
+        student_id,  BID, catalogYear, addOnly
+    }).save()
+        .then(student => res.json({
+                success: true,
+                data: student.toJSON()
+            })
+        )
+        .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                error: err
+            })
+        );
+
     AcademicInfo.forge({
-        school_name, degree, major, minor, advisor_id, dean_id, old_new_flag,student_id
+        school_name, degree, major, minor, advisor_id, dean_id,student_id
     }).save()
         .then(user => res.json({
                 success: true,
@@ -75,6 +91,27 @@ export function store(req, res) {
                 error: err
             })
         );
+
+    school_name = req.body.old_school_name
+    degree = req.body.old_degree
+    major = req.body.old_major
+    minor = req.body.old_minor
+    advisor_id = req.body.old_advisor_id
+    dean_id = req.body.old_dean_id
+    old_new_flag ="old"
+
+    AcademicInfo.forge({
+            school_name, degree, major, minor, advisor_id, dean_id, old_new_flag,student_id
+        }).save()
+            .then(user => res.json({
+                    success: true,
+                    data: user.toJSON()
+                })
+            )
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    error: err
+                })
+            );
 }
 
 /**

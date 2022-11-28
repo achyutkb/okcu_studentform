@@ -99,35 +99,35 @@ const AcademicDetailsForm = (props) => {
                   </Grid>
                   
                   <Grid item xs={3}>
-                    <Field type="Text" name="new_school_name" component={renderText} label="New School" />
+                    <Field type="Text" name="school_name" component={renderText} label="New School" />
                   </Grid>
 
                   <Grid item xs={3}>
-                    <Field type="Text" name="new_major" component={renderText} label="Degree" />
+                    <Field type="Text" name="degree" component={renderText} label="Degree" />
                   </Grid>
 
                   <Grid item xs={3}>
-                  <Field type="Text" name="new_major" component={renderText} label="Major" />
+                  <Field type="Text" name="major" component={renderText} label="Major" />
                   </Grid>
 
                   <Grid item xs={3}>
-                  <Field type="Text" name="new_minor" component={renderText} label="Minor" />
+                  <Field type="Text" name="minor" component={renderText} label="Minor" />
                   </Grid>
                   
                   <Grid item xs={6}>
-                  <Field type="Text" name="new_advisor" component={renderText} label="Advisor Name" />
+                  <Field type="Text" name="advisor_id" component={renderText} label="Advisor Name" />
                   </Grid>
 
                   <Grid item xs={6}>
-                  <Field type="Text" name="signature" component={renderText} label="Signature" />
+                  <Field type="Text" name="advisor_signature" component={renderText} label="Signature" />
                   </Grid>
 
                   <Grid item xs={6}>
-                  <Field type="Text" name="new_dean" component={renderText} label="Dean Of School" />
+                  <Field type="Text" name="dean_id" component={renderText} label="Dean Of School" />
                   </Grid>
 
                   <Grid item xs={6}>
-                  <Field type="Text" name="signature" component={renderText} label="Signature" />
+                  <Field type="Text" name="dean_signature" component={renderText} label="Signature" />
                   </Grid>
               </Grid>
                 <br /><br />
@@ -158,7 +158,7 @@ const AcademicDetailsForm = (props) => {
                 </Grid>
                 
                 <Grid item xs={6}>
-                <Field type="Text" name="old_advisor" component={renderText} label="Advisor Name" />
+                <Field type="Text" name="old_advisor_id" component={renderText} label="Advisor Name" />
                 </Grid>
 
                 <Grid item xs={6}>
@@ -166,7 +166,7 @@ const AcademicDetailsForm = (props) => {
                 </Grid>
 
                 <Grid item xs={6}>
-                <Field type="Text" name="old_dean" component={renderText} label="Dean Of School" />
+                <Field type="Text" name="old_dean_id" component={renderText} label="Dean Of School" />
                 </Grid>
 
                 <Grid item xs={6}>
