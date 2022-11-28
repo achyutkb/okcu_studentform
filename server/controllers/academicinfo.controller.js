@@ -61,10 +61,10 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {school_name, degree, major, minor, advisor, dean, old_new_flag,user_id} = req.body;
-    
+    const {school_name, degree, major, minor, advisor_id, dean_id, old_new_flag} = req.body;
+    const student_id = req.currentUser.id;
     AcademicInfo.forge({
-        school_name, degree, major, minor, advisor, dean, old_new_flag,user_id
+        school_name, degree, major, minor, advisor_id, dean_id, old_new_flag,student_id
     }).save()
         .then(user => res.json({
                 success: true,
@@ -92,9 +92,11 @@ export function update(req, res) {
                 degree: req.body.degree || user.get('degree'),
                 major: req.body.major || user.get('major'),
                 minor: req.body.minor || user.get('minor'),
-                advisor: req.body.advisor || user.get('advisor'),
-                dean: req.body.dean || user.get('dean'),
+                advisor_id: req.body.advisor_id || user.get('advisor_id'),
+                dean_id: req.body.dean_id || user.get('dean_id'),
                 old_new_flag: req.body.old_new_flag || user.get('old_new_flag'),
+                is_advisor_approved: 0,
+                is_dean_approved: 0
             })
                 .then(() => res.json({
                         error: false,
@@ -115,7 +117,7 @@ export function update(req, res) {
 
 
 export function advisorApproval(req, res) {
-    AcademicInfo.forge({'advisor_id': req.body.advisor_id,'user_id': req.body.student_id})
+    AcademicInfo.forge({'advisor_id': req.currentUser.id,'student_id': req.body.student_id})
             .fetch({require: true})
             .then(academicInfo => academicInfo.save({
                     is_advisor_approved: req.body.is_advisor_approved || academicInfo.get('is_advisor_approved'),
@@ -140,7 +142,7 @@ export function advisorApproval(req, res) {
 }
 
 export function deanApproval(req, res) {
-    AcademicInfo.forge({'dean_id': req.body.dean_id,'user_id': req.body.student_id})
+    AcademicInfo.forge({'dean_id': req.currentUser.id,'student_id': req.body.student_id})
             .fetch({require: true})
             .then(academicInfo => academicInfo.save({
                     is_dean_approved: req.body.is_dean_approved || academicInfo.get('is_dean_approved'),
