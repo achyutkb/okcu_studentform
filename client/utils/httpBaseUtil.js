@@ -9,7 +9,7 @@ export const httpBase = () => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-XSRF-TOKEN': getLocalStorage(JWT_TOKEN)
+            'Authorization': 'Bearer ' +getLocalStorage(JWT_TOKEN)
         },
         responseType: 'json'
     });

@@ -62,7 +62,7 @@ export function findById(req, res) {
  */
 export function store(req, res) {
     const {BID, catalogYear, addOnly} = req.body;
-    const {school_name, degree, major, minor, advisor_id, dean_id} = req.body;
+    // const {school_name, degree, major, minor, advisor_id, dean_id} = req.body;
     const old_new_flag = "new"
     const student_id = req.currentUser.id;
 
@@ -80,7 +80,14 @@ export function store(req, res) {
         );
 
     AcademicInfo.forge({
-        school_name, degree, major, minor, advisor_id, dean_id,student_id
+        school_name:req.body.school_name[0],
+        degree : req.body.degree[0],
+        major : req.body.major[0],
+        minor : req.body.minor[0],
+        advisor_id : req.body.advisor_id[0],
+        dean_id : req.body.dean_id[0],
+        student_id: student_id,
+        old_new_flag : "old"
     }).save()
         .then(user => res.json({
                 success: true,
@@ -91,17 +98,17 @@ export function store(req, res) {
                 error: err
             })
         );
-
-    school_name = req.body.old_school_name
-    degree = req.body.old_degree
-    major = req.body.old_major
-    minor = req.body.old_minor
-    advisor_id = req.body.old_advisor_id
-    dean_id = req.body.old_dean_id
-    old_new_flag ="old"
-
+            
+        
     AcademicInfo.forge({
-            school_name, degree, major, minor, advisor_id, dean_id, old_new_flag,student_id
+        school_name:req.body.school_name[1],
+        degree : req.body.degree[1],
+        major : req.body.major[1],
+        minor : req.body.minor[1],
+        advisor_id : req.body.advisor_id[1],
+        dean_id : req.body.dean_id[1],
+        student_id: student_id,
+        old_new_flag : "new"
         }).save()
             .then(user => res.json({
                     success: true,

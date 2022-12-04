@@ -1,3 +1,3 @@
 export const USERS = 'users';
 export const PRODUCTS = 'products';
-export const ACADEMIC = 'academic_form';
+export const ACADEMIC = 'academicinfo';

@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { USERS } from '../../constants/entity';
+import { ACADEMIC } from '../../constants/entity';
 import * as crudAction from '../../actions/crudAction';
 
 // Import custom components
@@ -25,7 +25,7 @@ class AcademicDetailsFormContainer extends Component {
    * @param {object} formProps
    */
      submitForm(formProps) {
-      this.props.actions.submitForm(USERS, formProps);
+      this.props.actions.submitForm(ACADEMIC, formProps);
     }
 
   render() {
@@ -33,12 +33,18 @@ class AcademicDetailsFormContainer extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+  isAuthenticated: state.auth.isAuthenticated,
+  errorMessage: state.auth.errorMessage,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Object.assign({}, crudAction), dispatch),
 });
 
 
 // export default hot(module)(AcademicDetailsForm);
-export default connect(null, mapDispatchToProps)(AcademicDetailsFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AcademicDetailsFormContainer);
 
 
