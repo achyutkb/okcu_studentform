@@ -6,6 +6,11 @@ import { AddShoppingCart, ThumbUp, Assessment, Face } from '@material-ui/icons';
 import SummaryBox from './SummaryBox';
 import Product from './Product';
 
+const styles = {
+logo: {
+  }
+};
+
 
 const products = [
   { id: 1, title: 'Latest News', text: 'Esports team wins national collegiate tournament' },
@@ -17,24 +22,11 @@ const products = [
 const Dashboard = () => {
   return (
     <div>
-      <h2 style={{ paddingBottom: '15px' }}>Dashboard</h2>
+      <br /><br />
 
-      <Grid container spacing={4} style={{ marginBottom: '15px' }}>
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={AddShoppingCart} color={pink[600]} title="Total Profit" value="1500k" />
-        </Grid>
+      <Grid container spacing={12} style={{ marginBottom: '15px' }}>
+      <img src="img/okcu.png" className="logo" alt="" align="middle"/>
 
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={ThumbUp} color={cyan[600]} title="Likes" value="4231" />
-        </Grid>
-
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={Assessment} color={purple[600]} title="Sales" value="460" />
-        </Grid>
-
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={Face} color={orange[600]} title="New Members" value="248" />
-        </Grid>
       </Grid>
 
       <Grid container spacing={24} style={{ marginBottom: '15px' }}>

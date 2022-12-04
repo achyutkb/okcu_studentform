@@ -75,7 +75,7 @@ const AcademicDetailsForm = (props) => {
                   </Grid>
 
                   <Grid item xs={6}>
-                    <Field type="text" name="BID" component={renderText} label="Student Identification Number B" />
+                    <Field type="text" name="BID" component={renderText} label="Student Identification Number" />
                   </Grid>
                   
               </Grid>
@@ -183,7 +183,7 @@ const AcademicDetailsForm = (props) => {
                 </Grid>
 
                 <Grid item xs={6}>
-                <Field type="date" name="signed_date" component={renderText} label="date" />
+                <Field type="date" name="signed_date" component={renderText}  value={null} label="Signed Date" />
                 </Grid>
       
             </Grid>
