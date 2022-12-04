@@ -11,6 +11,7 @@ import renderText from '../common/form/renderText';
 import { Label } from '@material-ui/icons';
 import {getLocalStorage} from '../../utils/storageUtil';
 import { FULL_NAME, LOGIN_EMAIL } from '../../config/config';
+import values from '@hapi/joi/lib/values';
 
 const styles = {
   root: {
@@ -56,6 +57,9 @@ const styles = {
 
 const FormAction = (props) => {
   const { handleSubmit, onSubmit, classes } = props;
+  const data= [
+    {student_name: "michaellll", school_name: "Peter School", email:"email@123" }
+  ];
 
   return (
       <Card className={classes.card}>
@@ -73,23 +77,30 @@ const FormAction = (props) => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Achyut</td>
-                                    <td>Peter Science</td>
-                                    <td>Sharkey</td>
-                                    <td>a.bhattarai@my.okcu.edu</td>
+                        <tbody>
+                          {
+                              data.map((values, key) => {
+                              return (
+                                <tr key={key}>
+                                    <td>{values.name}</td>
+                                   <td>{values.old_school}</td>
+                                    <td>{values.newschool}</td>
+                                    <td>{values.email}</td>
+                                                                
                                     <td>
-                                        <a href="#" class="btn border-shadow update">
-                                            <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
-                                        </a>
-                                        <a class="btn border-shadow delete">
-                                            <span class="text-gradient"><i class="fas fa-times"></i></span>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
+                                      <a href="#" class="btn border-shadow update">
+                                        <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                      </a>
+                                      <a class="btn border-shadow delete">
+                                        <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                      </a>
+                                      </td>
+                                  </tr>
+                              )
+                            
+                          })
+                          } 
+                        </tbody>
                     </table>
 
             </table>
