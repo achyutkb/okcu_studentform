@@ -8,10 +8,10 @@ import Product from './Product';
 
 
 const products = [
-  { id: 1, title: 'Samsung TV', text: 'Samsung 32 1080p 60Hz LED Smart HDTV.' },
-  { id: 2, title: 'Playstation 4', text: 'PlayStation 3 500 GB System' },
-  { id: 3, title: 'Apple iPhone 6', text: 'Apple iPhone 6 Plus 16GB Factory Unlocked GSM 4G ' },
-  { id: 4, title: 'Apple MacBook', text: 'Apple MacBook Pro MD101LL/A 13.3-Inch Laptop' },
+  { id: 1, title: 'Latest News', text: 'Esports team wins national collegiate tournament' },
+  { id: 2, title: 'Festival Season', text: 'OCU sets festive mood for Christmas Vespers concerts' },
+  { id: 3, title: 'Featured Events & 2023 Calendar', text: 'Here are the list of events for new 2023 Spring and your class schedules' },
+  { id: 4, title: 'Your Grades', text: 'You can find your grades for all subjects.' },
 ];
 
 const Dashboard = () => {
@@ -19,13 +19,13 @@ const Dashboard = () => {
     <div>
       <h2 style={{ paddingBottom: '15px' }}>Dashboard</h2>
 
-      <Grid container spacing={4} style={{ marginBottom: '15px' }}>
+      <Grid container spacing={12} style={{ marginBottom: '15px' }}>
         <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={AddShoppingCart} color={pink[600]} title="Total Profit" value="1500k" />
         </Grid>
 
         <Grid item lg={3} sm={6} xl={3} xs={12}>
-          <SummaryBox Icon={ThumbUp} color={cyan[600]} title="Likes" value="4231" />
+        <img src={require('../public/img/OKCUlogo1.png')} />
+
         </Grid>
 
         <Grid item lg={3} sm={6} xl={3} xs={12}>

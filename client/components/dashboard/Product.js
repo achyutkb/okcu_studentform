@@ -38,7 +38,7 @@ const Product = (props) => {
 
   return (
     <Card>
-      <CardHeader title="Recent Products" />
+      <CardHeader title="OKCU Latest Updates" />
       <Divider />
       <CardContent>
         <List>
