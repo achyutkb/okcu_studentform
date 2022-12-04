@@ -76,7 +76,7 @@ const FormAction = (props) => {
                                 <th>Student Email:</th>
                                 <th>Action</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                           {
                               data.map((values, key) => {
@@ -85,8 +85,7 @@ const FormAction = (props) => {
                                     <td>{values.name}</td>
                                    <td>{values.old_school}</td>
                                     <td>{values.newschool}</td>
-                                    <td>{values.email}</td>
-                                                                
+                                    <td>{values.email}</td>                           
                                     <td>
                                       <a href="#" class="btn border-shadow update">
                                         <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
